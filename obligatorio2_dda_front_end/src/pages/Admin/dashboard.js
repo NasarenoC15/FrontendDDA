@@ -22,8 +22,18 @@ const Dashboard = () => {
         router.push(`../Productos/Detalle/1`);
     }
 
+
     const handleAgregarUsuario = () => {
         router.push('../Usuarios/altaUsuario');
+    }
+
+    const handleModiicarUsuario = () => {
+        router.push('../Usuarios/modificarUsuario');
+
+    }
+
+    const handleListarUsuarios = () => {
+        router.push('../Usuarios/listadoDeUsuarios');
     }
 
     const handleAgregarCategoria = () => {
@@ -60,7 +70,8 @@ const Dashboard = () => {
                 <tbody>
                     <tr>
                         <td><button className='btn btn-secondary' onClick={handleAgregarUsuario}>Agregar Usuario</button></td>
-                        <td>Modificar Usuario</td>
+                        <td><button className='btn btn-secondary' onClick={handleModiicarUsuario}>Modificar Usuario</button></td>
+                        <td><button className='btn btn-secondary' onClick={handleListarUsuarios}>Listar Usuarios</button></td>
                         <td>Eliminar Usuario</td>
                     </tr>
                 </tbody>

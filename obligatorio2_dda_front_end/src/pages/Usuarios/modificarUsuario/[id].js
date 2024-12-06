@@ -2,26 +2,64 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 // src/pages/_app.js
-import '../../app/globals.css'; // Verifica la ruta a tu archivo CSS
+import '../../../app/globals.css'; // Verifica la ruta a tu archivo CSS
 import 'tailwindcss/tailwind.css'; // Verifica la ruta a tu archivo CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from "../../components/header";
-import { agregarUsuario } from '../../api/Usuarios/agregarUsuario';
+import Header from "../../../components/header";
+//import { agregarUsuario } from '../../../../api/Usuarios/agregarUsuario';
+import {obtenerUsuario} from '../../../api/Usuarios/obtenerUsuario';
 import swal from 'sweetalert2';
+import { modificarUsuario } from '@/api/Usuarios/modificarUsuario';
+import { useRouter } from 'next/router';
 
-const AltaUsuario = () => {
+const ModificarUsuario = () => {
 
-   // useTokenVerification(); // Verifica que el token sea valido y este logueado
+    const router = useRouter();
+    const { id } = router.query;
 
    const [nombre, setNombre] = useState('');
     const [correo, setCorreo] = useState('');
     const [tipoUsuario, setTipoUsuario] = useState('');
     const [fechaMembresia, setFechaMembresia] = useState('');
+    const [fechaRegistro, setFechaRegistro] = useState('');
+
+    useEffect(() => {
+        const fetchUsuario = async () => {
+            const response = await obtenerUsuario(id);
+            if(response.data){
+                console.log(response.data);
+                setNombre(response.data.nombre);
+                setCorreo(response.data.correo);
+                setFechaRegistro(response.data.fechaRegistro);
+                try{
+                    setFechaMembresia(response.data.adquisicionMembresia);
+                    if(response.data.adquisicionMembresia !== '' && response.data.adquisicionMembresia !== null && response.data.adquisicionMembresia !== undefined){
+                        setTipoUsuario('Premium');
+                    }else{
+                        setTipoUsuario('Regular');
+                    }
+                }
+                catch{
+                    setFechaMembresia('');
+                    setTipoUsuario('Regular');
+                }
+            }else{
+                swal.fire({
+                    title: 'Error al obtener el usuario',
+                    icon: 'error',
+                    showConfirmButton: false,
+                    timer: 1500
+                }); 
+            }
+        }
+        fetchUsuario();
+    },[]);
+
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await agregarUsuario(nombre,correo,tipoUsuario,fechaMembresia);
+        const response = await modificarUsuario(nombre,correo,tipoUsuario,fechaMembresia,id,fechaRegistro);
         if(response.status === 200){
             swal.fire({
                 title: 'Usuario agregado',
@@ -75,7 +113,7 @@ const AltaUsuario = () => {
         <img></img><img></img>
           <img src="https://media.istockphoto.com/id/1353479729/es/vector/juego-inal%C3%A1mbrico-joystick-controlador-gamepad-gamepad-inal%C3%A1mbrico-abstracto-dibujo-colorido.jpg?s=612x612&w=0&k=20&c=mp1eadgrTe4Jk9IYvYp28ZQykDB6xi9yHYe9ktunnuk=" alt="Placeholder Image" className="object-cover w-24 h-24 " />
           </div>
-          <h1 className="text-2xl font-bold text-gray-800 mb-6 mt-4 text-center">Alta Usuario</h1>
+          <h1 className="text-2xl font-bold text-gray-800 mb-6 mt-4 text-center">Modificar Usuario</h1>
       
           <form className="space-y-6">
             <div>
@@ -146,4 +184,4 @@ const AltaUsuario = () => {
     )
 }
 
-export default AltaUsuario
+export default ModificarUsuario

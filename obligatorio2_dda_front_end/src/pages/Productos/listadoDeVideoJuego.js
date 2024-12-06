@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useTokenVerification } from "../../hooks/useTokenVerification";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2";
 import "../../app/globals.css"; // Verifica la ruta a tu archivo CSS
@@ -64,7 +63,7 @@ const ListadoDeVideoJuego = () => {
     <div>
         <Header />
       <h1 className="mt-3 text-center">Video Juegos</h1>
-      <div className="grid grid-cols-4">
+      <div className="grid grid-cols-4 items-center">
        {
         videoJuegos && videoJuegos.map((videoJuego) => (
             <div key={videoJuego.id} className="m-4">

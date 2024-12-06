@@ -159,6 +159,7 @@ const AltaVideoJuego = () => {
                 value={descripcion}
                 onChange={handleDescripcion}
                 placeholder="Describe el videojuego"
+                maxLength={255}
                 rows="4"
                 className="mt-2 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm p-2.5"
               ></textarea>
