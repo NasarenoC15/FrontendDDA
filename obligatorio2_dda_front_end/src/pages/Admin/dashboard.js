@@ -18,6 +18,10 @@ const Dashboard = () => {
         router.push('../Productos/listadoDeVideoJuego');
     }
 
+    const handlelistadoDeVideoJuegoTabla = () => {
+        router.push('../Productos/listadoDeVideoJuegoTabla');
+    }
+
     const handleDetalleVideoJuego = () => {
         router.push(`../Productos/Detalle/1`);
     }
@@ -43,27 +47,28 @@ const Dashboard = () => {
     return (
         <div>
             <Header/>
-            <h1>Dashboard</h1>
+            <div>
+                <h1 className='text-center mt-4'>Dashboard</h1>
+            </div>
            <div className='grid grid-cols-1'>
            <table className='mt-4'>
                 <thead>
                     <tr>
-                        <th>Zona Productos</th>
+                        <th>Zona VideoJuegos</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td><button onClick={handleAgregarVideoJuego} className="btn btn-primary">Agregar Videojuego</button></td>
-                        <td>Modificar Videojuego</td>
-                        <td>Eliminar Videojuego</td>
                         <td><button onClick={handlelistadoDeVideoJuego} className="btn btn-primary">Listado de Videojuegos</button></td>
+                        <td><button onClick={handlelistadoDeVideoJuegoTabla} className="btn btn-primary">Listado de Videojuegos Tabla</button></td>
                         <td><button onClick={handleDetalleVideoJuego} className="btn btn-primary">Detalle del Videojuego</button></td>
                     </tr>
                 </tbody>
             </table>
             <table className='mt-4'>
                 <thead>
-                    <tr>
+                    <tr className=''>
                         <th>Zona Usuarios</th>
                     </tr>
                 </thead>
@@ -73,6 +78,7 @@ const Dashboard = () => {
                         <td><button className='btn btn-secondary' onClick={handleModiicarUsuario}>Modificar Usuario</button></td>
                         <td><button className='btn btn-secondary' onClick={handleListarUsuarios}>Listar Usuarios</button></td>
                         <td>Eliminar Usuario</td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>
@@ -84,8 +90,8 @@ const Dashboard = () => {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Ver Ventas</td>
-                        <td>Ver Ventas por Usuario</td>
+                         <td>Realizar Venta</td>  {/*la venta debe de usar el carrito y realziar la precompra y luego la compra */}
+                        <td>*Devolver Venta*</td>
 
                     </tr>
                 </tbody>
@@ -99,8 +105,22 @@ const Dashboard = () => {
                 <tbody>
                     <tr>
                         <td><button className='btn btn-danger' onClick={handleAgregarCategoria}>Agregar Categoria</button></td>
-                        <td>Modificar Usuario</td>
-                        <td>Eliminar Usuario</td>
+                        <td>Modificar Categoria</td>
+                        <td>Eliminar Categoria</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table className='mt-4'>
+                <thead>
+                    <tr>
+                        <th>Zona Filtros</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Listar video debajo de cantidad de stock " se puede usar listar videojuegotabla"</td>
+                        <td>Listar compras realizadas por un usuario</td>
+                        <td>Listar compras en una fecha determinada</td>
                     </tr>
                 </tbody>
             </table>

@@ -79,7 +79,19 @@ const ListadoDeVideoJuego = () => {
                 <h2 className="card-title text-lg font-semibold text-gray-800">
                   {videoJuego.nombre}
                 </h2>
-                <p className="text-gray-600 text-sm">{videoJuego.descripcion}</p>
+                <p className="text-gray-600 text-sm ">
+                {videoJuego.descripcion.length < 255
+                  ? (
+                    <>
+                      {videoJuego.descripcion}
+                      {Array(255 - videoJuego.descripcion.length).fill('_').map((char, index) => (
+                        <span key={index} className="text-white">{char}</span>
+                      ))}
+                    </>
+                  )
+                  : videoJuego.descripcion}
+              </p>
+
                 <div className="card-actions flex flex-wrap gap-2 mt-2">
                   <span className="badge badge-outline text-black">{videoJuego.categoria.nombre}</span>
                   <span className="badge badge-outline text-black">

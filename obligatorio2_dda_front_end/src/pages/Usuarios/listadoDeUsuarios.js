@@ -81,17 +81,18 @@ const ListarUsuarios = () => {
             try {
                 const response = await eliminarUsuarioRegular(id);
                 if (response.data) {
+                    const response2 = await obtenerUsuariosRegulares();
+                    if(response2.data){
+                        setUsuariosRegulares([]);
+                        setUsuariosPremium([]);
+                    }
                     Swal.fire({
                         title: 'Usuario eliminado con éxito',
                         icon: 'success',
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    const response = await obtenerUsuariosRegulares();
-                    if(response.data){
-                        setUsuariosRegulares(response.data);
-                        setUsuariosPremium([]);
-                    }
+                    
                 }
             } catch (error) {
                 Swal.fire({
