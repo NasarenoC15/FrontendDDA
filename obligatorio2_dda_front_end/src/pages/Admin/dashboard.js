@@ -44,6 +44,13 @@ const Dashboard = () => {
         router.push('../Categoria/altaCategoria');
     }
 
+    const handleModificarCategoria = () => {
+        router.push('../Categorias/modificarCategoria');
+    }
+
+    const handleListarCategorias = () => {
+        router.push('../Usuarios/listadoDeCategorias');
+    }
     return (
         <div>
             <Header/>
@@ -105,7 +112,11 @@ const Dashboard = () => {
                 <tbody>
                     <tr>
                         <td><button className='btn btn-danger' onClick={handleAgregarCategoria}>Agregar Categoria</button></td>
-                        <td>Modificar Categoria</td>
+                        <td><button className='btn btn-danger' onClick={handleModificarCategoria}>Modificar Categoria</button></td>
+                        <td><button className='btn btn-danger' onClick={handleListarCategorias}>Listado de Categorias</button></td>
+
+                        
+                        {/* //<td>Modificar Categoria</td> */}
                         <td>Eliminar Categoria</td>
                     </tr>
                 </tbody>

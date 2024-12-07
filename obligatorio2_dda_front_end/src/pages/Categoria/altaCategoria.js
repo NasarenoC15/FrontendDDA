@@ -86,4 +86,4 @@ const AltaUsuario = () => {
     )
 }
 
-export default AltaUsuario
+export default AltaCategoria
