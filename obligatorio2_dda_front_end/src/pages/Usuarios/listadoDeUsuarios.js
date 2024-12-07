@@ -17,9 +17,6 @@ const ListarUsuarios = () => {
     const [usuariosPremium, setUsuariosPremium] = useState([]);
     const [usuariosRegulares, setUsuariosRegulares] = useState([]);
 
-
-    
-
     const handleObtenerUsuariosPremium = async () => {
         const response = await obtenerUsuariosPremium();
         if(response.data){
@@ -38,6 +35,10 @@ const ListarUsuarios = () => {
 
     const handleModificarUsuario = (id) => {
         router.push(`../Usuarios/modificarUsuario/${id}`);
+    }
+
+    const handleVerHistorialCompra = (id) => {
+        router.push(`../Usuarios/historialCompra/${id}`);
     }
 
     const handleEliminarUsuarioPremium = async (id) => {
@@ -60,10 +61,10 @@ const ListarUsuarios = () => {
                 });
 
                 const response = await obtenerUsuariosPremium();
-                    if(response.data){
+                if(response.data){
                     setUsuariosPremium(response.data);
                     setUsuariosRegulares([]);
-                    }
+                }
             }
         }
 
@@ -103,8 +104,6 @@ const ListarUsuarios = () => {
             }
         }
     }
-    
-
 
     return (
         <div>
@@ -137,8 +136,9 @@ const ListarUsuarios = () => {
                                 <td>{usuario.adquisicionMembresia}</td>
                                 <td>{usuario.fechaRegistro}</td>
                                 <td>
-                                <button className="btn btn-success mr-3" onClick={() => handleModificarUsuario(usuario.id)}>Modificar</button>
-                                <button className="btn btn-danger" onClick={() => handleEliminarUsuarioPremium(usuario.id)}>Eliminar</button>
+                                    <button className="btn btn-info mr-3" onClick={() => handleVerHistorialCompra(usuario.id)}>Historial</button>
+                                    <button className="btn btn-success mr-3" onClick={() => handleModificarUsuario(usuario.id)}>Modificar</button>
+                                    <button className="btn btn-danger" onClick={() => handleEliminarUsuarioPremium(usuario.id)}>Eliminar</button>
                                 </td>
                             </tr>
                         ))}
@@ -150,6 +150,7 @@ const ListarUsuarios = () => {
                                 <td>Regular</td>
                                 <td>{usuario.fechaRegistro}</td>
                                 <td>
+                                    <button className="btn btn-info mr-3" onClick={() => handleVerHistorialCompra(usuario.id)}>Historial</button>
                                     <button className="btn btn-success mr-3" onClick={() => handleModificarUsuario(usuario.id)}>Modificar</button>
                                     <button className="btn btn-danger" onClick={() => handleEliminarUsuarioRegular(usuario.id)}>Eliminar</button>
                                 </td>
@@ -160,9 +161,6 @@ const ListarUsuarios = () => {
             </div>
         </div>
     );
-
 }
 
 export default ListarUsuarios;
-
-

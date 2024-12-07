@@ -122,8 +122,6 @@ const Dashboard = () => {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Listar video debajo de cantidad de stock " se puede usar listar videojuegotabla"</td>
-                        <td>Listar compras realizadas por un usuario</td>
                         <td>Listar compras en una fecha determinada</td>
                     </tr>
                 </tbody>
