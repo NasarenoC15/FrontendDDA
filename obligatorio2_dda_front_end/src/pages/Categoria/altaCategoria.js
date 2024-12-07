@@ -10,7 +10,7 @@ import {agregarCategoria} from '../../api/Categorias/agregarCategoria';
 import Swal from 'sweetalert2';
 
 
-const AltaUsuario = () => {
+const AltaCategoria = () => {
 
    // useTokenVerification(); // Verifica que el token sea valido y este logueado
 

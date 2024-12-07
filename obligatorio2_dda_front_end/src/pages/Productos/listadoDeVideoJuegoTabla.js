@@ -61,12 +61,33 @@ const ListadoDeVideoJuego = () => {
                     timer: 1500
                 });
 
-               window.location.reload();
+                handleObtenerVideoJuegos(); //Actualiza la lista después de eliminar
+              } else {
+                  Swal.fire({
+                      title: 'Error al eliminar el video juego',
+                      icon: 'error',
+                      showConfirmButton: false,
+                      timer: 1500
+                  });
             }
         }
 
     }
 
+    const handleObtenerVideoJuegos = async () => {
+      const response = await obtenerVideoJuegos();
+            if(response.data){
+                setVideoJuegos(response.data);
+                console.log(response.data);
+            }else{
+                Swal.fire({
+                    title: 'Error al obtener los videojuegos',
+                    icon: 'error',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+              }
+    }
 
 
     const handleModificarVideoJuego = (id) => {

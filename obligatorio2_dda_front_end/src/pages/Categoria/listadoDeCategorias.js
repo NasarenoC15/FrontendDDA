@@ -6,9 +6,11 @@ import Header from "../../components/header";
 import { obtenerCategorias } from '../../api/Categorias/obtenerCategorias'; 
 import { eliminarCategoria } from '../../api/Categorias/eliminarCategoria'; 
 import Swal from 'sweetalert2';
+import { useRouter } from 'next/navigation';
 
 const ListarCategorias = () => {
     const [categorias, setCategorias] = useState([]);
+    const router = useRouter();
 
     const handleObtenerCategorias = async () => {
         try {
@@ -42,16 +44,15 @@ const ListarCategorias = () => {
         });
 
         if (result.isConfirmed) {
-            try {
                 const response = await eliminarCategoria(id);
-                if (response.data) {
+                if (response.status === 200){
                     Swal.fire({
                         title: 'Categoría eliminada con éxito',
                         icon: 'success',
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    handleObtenerCategorias(); // Actualiza la lista después de eliminar
+                    handleObtenerCategorias(); //Actualiza la lista después de eliminar
                 } else {
                     Swal.fire({
                         title: 'Error al eliminar la categoría',
@@ -60,15 +61,12 @@ const ListarCategorias = () => {
                         timer: 1500
                     });
                 }
-            } catch (error) {
-                Swal.fire({
-                    title: 'Error al eliminar categoría',
-                    text: error.message,
-                    icon: 'error'
-                });
-            }
         }
     };
+
+    const handleModificarCategoria= (id) => {
+        router.push(`../Categoria/modificarCategoria/${id}`);
+    }
 
     useEffect(() => {
         handleObtenerCategorias();
@@ -94,9 +92,15 @@ const ListarCategorias = () => {
                                 <td>{categoria.nombre}</td>
                                 <td>
                                     <button
+                                        className="btn btn-primary"
+                                        onClick={() => handleModificarCategoria(categoria.id)}>
+                                        Modificar
+                                    </button>
+                                </td>
+                                <td>
+                                    <button
                                         className="btn btn-danger"
-                                        onClick={() => handleEliminarCategoria(categoria.id)}
-                                    >
+                                        onClick={() => handleEliminarCategoria(categoria.id)}>
                                         Eliminar
                                     </button>
                                 </td>

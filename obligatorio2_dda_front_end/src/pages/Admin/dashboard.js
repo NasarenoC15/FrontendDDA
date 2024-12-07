@@ -45,11 +45,11 @@ const Dashboard = () => {
     }
 
     const handleModificarCategoria = () => {
-        router.push('../Categorias/modificarCategoria');
+        router.push('../Categoria/modificarCategoria');
     }
 
     const handleListarCategorias = () => {
-        router.push('../Usuarios/listadoDeCategorias');
+        router.push('../Categoria/listadoDeCategorias');
     }
     return (
         <div>
@@ -82,9 +82,7 @@ const Dashboard = () => {
                 <tbody>
                     <tr>
                         <td><button className='btn btn-secondary' onClick={handleAgregarUsuario}>Agregar Usuario</button></td>
-                        <td><button className='btn btn-secondary' onClick={handleModiicarUsuario}>Modificar Usuario</button></td>
                         <td><button className='btn btn-secondary' onClick={handleListarUsuarios}>Listar Usuarios</button></td>
-                        <td>Eliminar Usuario</td>
                         <td></td>
                     </tr>
                 </tbody>
@@ -112,12 +110,7 @@ const Dashboard = () => {
                 <tbody>
                     <tr>
                         <td><button className='btn btn-danger' onClick={handleAgregarCategoria}>Agregar Categoria</button></td>
-                        <td><button className='btn btn-danger' onClick={handleModificarCategoria}>Modificar Categoria</button></td>
                         <td><button className='btn btn-danger' onClick={handleListarCategorias}>Listado de Categorias</button></td>
-
-                        
-                        {/* //<td>Modificar Categoria</td> */}
-                        <td>Eliminar Categoria</td>
                     </tr>
                 </tbody>
             </table>
