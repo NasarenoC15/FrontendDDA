@@ -1,44 +1,18 @@
-import Dominio from "../route";
+import { modificarUsuarioRegular } from "./modificarUsuarioRegular";
+import { modificarUsuarioPremium } from "./modificarUsuarioPremium";
 
-export const modificarUsuario = async (nombre,correo,tipoUsuario,adquisicionMembresia,fechaRegistro,id) => {
-    if (!nombre || !correo || !tipoUsuario || !fechaRegistro || !id) { 
-        return { status: 400, message: 'Todo es requerido' };
+export const modificarUsuario = async (nombre, correo, tipoUsuario, adquisicionMembresia, fechaRegistro, id) => {
+    if (!nombre || !correo || !tipoUsuario || !fechaRegistro || !id) {
+        return { status: 400, message: 'Todos los campos son requeridos' };
     }
-    try {
-        if(tipoUsuario === 'Regular'){
-            const response = await fetch(`${Dominio}/usuarioRegular`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ nombre,correo,fechaRegistro,id })
-            });
 
-            if (!response.ok) {
-                const errorData = await response.json();
-                return { status: response.status, message: errorData.message || 'Error al agregar usuario' };
-            }
-
-            const data = await response.json();
-            return { status: response.status, data };
-        }
-        if(tipoUsuario === 'Premium'){
-            const response = await fetch(`${Dominio}/usuarioPremium`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ nombre,correo,adquisicionMembresia,fechaRegistro,id })
-            });
-            if (!response.ok) {
-                const errorData = await response.json();
-                return { status: response.status, message: errorData.message || 'Error al agregar usuario' };
-            }
-
-            const data = await response.json();
-            return { status: response.status, data };
-        }
-    } catch (error) {
-        return { status: 500, message: 'Error del servidor' };
+    if (tipoUsuario === 'Regular') {
+        return await modificarUsuarioRegular(nombre, correo, fechaRegistro, id);
     }
-}
+
+    if (tipoUsuario === 'Premium') {
+        return await modificarUsuarioPremium(nombre, correo, adquisicionMembresia, fechaRegistro, id);
+    }
+
+    return { status: 400, message: 'Tipo de usuario inválido' };
+};
