@@ -14,15 +14,14 @@ const ListadoDeVideoJuego = () => {
 
     const [videoJuegos, setVideoJuegos] = useState([]);
     const [carrito, setCarrito] = useState([]);
-    const [stockMinimo, setStockMinimo] = useState(""); // Nuevo estado para el stock mínimo
-    const [videoJuegosFiltrados, setVideoJuegosFiltrados] = useState([]); // Para manejar la lista filtrada
-
+    const [stockMinimo, setStockMinimo] = useState(""); 
+    const [videoJuegosFiltrados, setVideoJuegosFiltrados] = useState([]); 
     useEffect(() => {
         const fetchVideoJuegos = async () => {
             const response = await obtenerVideoJuegos();
             if (response.data) {
                 setVideoJuegos(response.data);
-                setVideoJuegosFiltrados(response.data); // Inicialmente, todos los videojuegos
+                setVideoJuegosFiltrados(response.data); 
             } else {
                 Swal.fire({
                     title: 'Error al obtener los videojuegos',
