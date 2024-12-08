@@ -67,7 +67,7 @@ const AltaVideoJuego = () => {
       reader.onerror = (error) => reject(error);
     });
   };
-  
+
 
   const handleUrl = (e) => {
     setUrl(e.target.value);
@@ -80,12 +80,12 @@ const AltaVideoJuego = () => {
     e.preventDefault();
     console.log(nombre, categoriaSeleccionada, descripcion, precio, cantidad, imagen, url);
     let imagenBase64 = '';
-    if(imagen){
+    if (imagen) {
       imagenBase64 = await convertToBase64(imagen);
     }
     const response = await agregarVideoJuego(nombre, categoriaSeleccionada, descripcion, precio, cantidad, imagenBase64, url);
 
-    if (response.status ===200) {
+    if (response.status === 200) {
       Swal.fire({
         title: "Videojuego agregado",
         icon: "success",
@@ -114,6 +114,10 @@ const AltaVideoJuego = () => {
       <Header />
       <div className="min-h-screen flex items-center justify-center bg-gray-100 py-10">
         <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-lg">
+        <div className='grid grid-cols-5'>
+            <img></img><img></img>
+            <img src="https://media.istockphoto.com/id/1353479729/es/vector/juego-inal%C3%A1mbrico-joystick-controlador-gamepad-gamepad-inal%C3%A1mbrico-abstracto-dibujo-colorido.jpg?s=612x612&w=0&k=20&c=mp1eadgrTe4Jk9IYvYp28ZQykDB6xi9yHYe9ktunnuk=" alt="Placeholder Image" className="object-cover w-24 h-24 " />
+          </div>
           <h1 className="text-2xl font-bold text-gray-800 mb-6 mt-4 text-center">
             Alta Video Juego
           </h1>
@@ -138,7 +142,7 @@ const AltaVideoJuego = () => {
               </label>
               <select
                 value={categoriaSeleccionada}
-                onChange={ handleCategoria}
+                onChange={handleCategoria}
                 className="mt-2 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm p-2.5"
               >
                 <option value="">Seleccione una categoría</option>

@@ -101,7 +101,7 @@ const ListadoDeVideoJuego = () => {
                 </button>
             </div>
 
-            <div className="flex ml-20 items-center">
+            <div className="flex ml-10 mt-3 items-center">
                 <table className="table table-striped">
                     <thead>
                         <tr>

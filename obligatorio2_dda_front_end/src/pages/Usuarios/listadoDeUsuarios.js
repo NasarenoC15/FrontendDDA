@@ -114,7 +114,7 @@ const ListarUsuarios = () => {
                     <button onClick={handleObtenerUsuariosPremium} className="btn btn-danger mr-4">Obtener Usuarios Premium</button>
                     <button onClick={handleObtenerUsuariosRegulares} className="btn btn-primary">Obtener Usuarios Regulares</button>
                 </div>
-                <table className='table ml-20 mt-3'>
+                <table className='table ml-10 mt-3'>
                     <thead>
                         <tr>
                             <th>Id</th>
