@@ -77,7 +77,7 @@ const ListarCategorias = () => {
             <Header />
             <div className="text-center">
                 <h1>Listar Categorías</h1>
-                <table className="table mt-3">
+                <table className="table ml-10 mt-3">
                     <thead>
                         <tr>
                             <th>ID</th>

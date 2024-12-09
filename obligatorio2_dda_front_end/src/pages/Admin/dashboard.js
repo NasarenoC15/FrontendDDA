@@ -21,6 +21,9 @@ const Dashboard = () => {
     const handleAgregarCategoria = () => router.push('../Categoria/altaCategoria');
     const handleListarCategorias = () => router.push('../Categoria/listadoDeCategorias');
 
+    const handleAgregarVenta = () => router.push('../Venta/altaVenta');
+
+
     return (
         <div className="min-h-screen bg-gray-100">
             <Header />
@@ -53,6 +56,7 @@ const Dashboard = () => {
                     {/* Zona Ventas */}
                     <div className="bg-white shadow-lg rounded-lg p-6">
                         <h2 className="text-xl text-center font-semibold mb-4">Zona Ventas</h2>
+                        <button onClick={handleAgregarVenta} className="btn btn-danger w-full mb-2">Agregar Venta</button>
                         <p className="text-gray-600 mb-2">Realizar Venta</p>
                         <p className="text-gray-600">*Devolver Venta*</p>
                     </div>
