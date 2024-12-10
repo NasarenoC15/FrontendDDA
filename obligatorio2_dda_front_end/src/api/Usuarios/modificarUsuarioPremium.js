@@ -11,7 +11,7 @@ export const modificarUsuarioPremium = async (nombre, correo, adquisicionMembres
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ nombre, correo, adquisicionMembresia, fechaRegistro, id })
+            body: JSON.stringify({ id , nombre, correo,  fechaRegistro,adquisicionMembresia,})
         });
 
         if (!response.ok) {

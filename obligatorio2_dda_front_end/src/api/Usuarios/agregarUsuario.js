@@ -1,6 +1,6 @@
 import Dominio from "../route";
 
-export const agregarUsuario = async (nombre,correo,tipoUsuario,adquisicionMembresia) => {
+export const agregarUsuario = async (id,nombre,correo,tipoUsuario,adquisicionMembresia) => {
     if (!nombre || !correo || !tipoUsuario) {
         return { status: 400, message: 'Nombre es requerido' };
     }
@@ -13,7 +13,7 @@ export const agregarUsuario = async (nombre,correo,tipoUsuario,adquisicionMembre
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ nombre,correo,fechaRegistro })
+                body: JSON.stringify({ id,nombre,correo,fechaRegistro })
             });
 
             if (!response.ok) {
@@ -30,7 +30,7 @@ export const agregarUsuario = async (nombre,correo,tipoUsuario,adquisicionMembre
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ nombre,correo,adquisicionMembresia,fechaRegistro })
+                body: JSON.stringify({id,nombre,correo,adquisicionMembresia,fechaRegistro })
             });
             if (!response.ok) {
                 const errorData = await response.json();

@@ -11,17 +11,17 @@ import swal from 'sweetalert2';
 
 const AltaUsuario = () => {
 
-  // useTokenVerification(); // Verifica que el token sea valido y este logueado
 
   const [nombre, setNombre] = useState('');
   const [correo, setCorreo] = useState('');
   const [tipoUsuario, setTipoUsuario] = useState('');
   const [fechaMembresia, setFechaMembresia] = useState('');
+  const [id, setId] = useState('');
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await agregarUsuario(nombre, correo, tipoUsuario, fechaMembresia);
+    const response = await agregarUsuario(id,nombre, correo, tipoUsuario, fechaMembresia);
     if (response.status === 200) {
       swal.fire({
         title: 'Usuario agregado',
@@ -29,7 +29,7 @@ const AltaUsuario = () => {
         showConfirmButton: false,
         timer: 1500
       });
-
+      setId('');
       setNombre('');
       setCorreo('');
       setTipoUsuario('');
@@ -47,6 +47,9 @@ const AltaUsuario = () => {
 
   const handleNombre = (e) => {
     setNombre(e.target.value);
+  }
+  const handleId = (e) => {
+    setId(e.target.value);
   }
 
   const handleCorreo = (e) => {
@@ -77,6 +80,17 @@ const AltaUsuario = () => {
           <h1 className="text-2xl font-bold text-gray-800 mb-6 mt-4 text-center">Alta Usuario</h1>
 
           <form className="space-y-6">
+          <div>
+              <label className="block text-sm font-medium text-gray-700">Id</label>
+              <input
+                type="number"
+                value={id}
+                onChange={handleId}
+                placeholder="Id"
+                required
+                className="mt-2 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm p-2.5"
+              />
+            </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">Nombre</label>
               <input
@@ -84,6 +98,7 @@ const AltaUsuario = () => {
                 value={nombre}
                 onChange={handleNombre}
                 placeholder="Nombre"
+                required
                 className="mt-2 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm p-2.5"
               />
             </div>
@@ -95,6 +110,7 @@ const AltaUsuario = () => {
                 value={correo}
                 onChange={handleCorreo}
                 placeholder="Correo"
+                required
                 className="mt-2 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm p-2.5"
               />
             </div>

@@ -22,6 +22,7 @@ const ModificarUsuario = () => {
     const [tipoUsuario, setTipoUsuario] = useState('');
     const [fechaMembresia, setFechaMembresia] = useState('');
     const [fechaRegistro, setFechaRegistro] = useState('');
+    const [tipoUsuarioAntiguo, setTipoUsuarioAntiguo] = useState('');
 
     useEffect(() => {
         const fetchUsuario = async () => {
@@ -35,8 +36,10 @@ const ModificarUsuario = () => {
                     setFechaMembresia(response.data.adquisicionMembresia);
                     if(response.data.adquisicionMembresia !== '' && response.data.adquisicionMembresia !== null && response.data.adquisicionMembresia !== undefined){
                         setTipoUsuario('Premium');
+                        setTipoUsuarioAntiguo('Premium');
                     }else{
                         setTipoUsuario('Regular');
+                        setTipoUsuarioAntiguo('Regular');
                     }
                 }
                 catch{
@@ -59,7 +62,7 @@ const ModificarUsuario = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await modificarUsuario(nombre,correo,tipoUsuario,fechaMembresia,id,fechaRegistro);
+        const response = await modificarUsuario(nombre, correo, tipoUsuario, fechaMembresia, fechaRegistro, id, tipoUsuarioAntiguo);
         if(response.status === 200){
             swal.fire({
                 title: 'Usuario agregado',

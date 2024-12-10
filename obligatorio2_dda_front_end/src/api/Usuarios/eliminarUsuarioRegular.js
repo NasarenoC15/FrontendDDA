@@ -17,9 +17,7 @@ export const eliminarUsuarioRegular = async (id) => {
                 const errorData = await response.json();
                 return { status: response.status, message: errorData.message || 'Error al eliminar usuario' };
             }
-
-            const data = await response.json();
-            return { status: response.status, data };
+            return { status: 200};
 
         } catch (error) {
             return { status: 500, message: 'Error del servidor' };

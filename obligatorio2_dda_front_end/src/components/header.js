@@ -49,7 +49,7 @@ const Header = () => {
         {/* Logo Section */}
         <div className="flex-1">
           <a
-            className="text-3xl font-bold tracking-widest text-gradient cursor-pointer"
+            className="ml-10 text-3xl font-bold tracking-widest text-gradient cursor-pointer"
             style={{ fontFamily: "'Press Start 2P', cursive" }}
             onClick={handleGoDashboard}
           >
@@ -58,9 +58,9 @@ const Header = () => {
         </div>
 
         {/* Actions Section */}
-        <div className="flex-none flex items-center space-x-6">
+        <div className="flex-none flex items-center space-x-6 mr-10">
           {/* Cart Icon */}
-          <div className="relative">
+          <div className="relative mr-2">
             <button className="btn btn-ghost btn-circle">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
