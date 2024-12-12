@@ -18,7 +18,7 @@ export const obtenerUsuariosPremium = async () => {
                 }
             }
         } catch (error) {
-            console.error('Error en obtenerUsuario:', error);
+            console.error('Error en obtener Usuario:', error);
         }
 
         // Si ambas solicitudes fallaron

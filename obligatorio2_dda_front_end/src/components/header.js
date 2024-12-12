@@ -43,6 +43,10 @@ const Header = () => {
     router.push("../../");
   };
 
+  const handleCheckOut = () => {
+    router.push("../../Carrito/verCarrito");
+  };
+
   return (
     <header>
       <nav className="navbar bg-gray-900 text-white shadow-lg py-4 px-6">
@@ -61,7 +65,7 @@ const Header = () => {
         <div className="flex-none flex items-center space-x-6 mr-10">
           {/* Cart Icon */}
           <div className="relative mr-2">
-            <button className="btn btn-ghost btn-circle">
+            <button className="btn btn-ghost btn-circle" onClick={handleCheckOut}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
