@@ -1,11 +1,11 @@
 import Dominio from "../route";
 import { obtenerVideoJuegoRed } from "../VideoJuegos/obtenerVideoJuegoRed";
+import { modificarStock } from "../VideoJuegos/modificarStock";
 
-export const agregarCarrito = async (carrito, idventa) => {
+export const agregarCarrito = async (carrito, idventa,usuario) => {
     if (!Array.isArray(carrito) || carrito.length === 0 || !idventa) {
         return { status: 400, message: 'Todos los campos son requeridos y el carrito debe contener al menos un videojuego' };
     }
-
     try {
         await Promise.all(carrito.map(async (item) => {
             if (!item.id || !item.cantidad) {
@@ -22,6 +22,7 @@ export const agregarCarrito = async (carrito, idventa) => {
             }
 
             const precioFinal = videojuego.dataRed.precio * item.cantidad;
+            const precioDescuento = usuario == "Premium" ? precioFinal * 0.8 : precioFinal;
             const response = await fetch(`${Dominio}/precompra`, {
                 method: 'POST',
                 headers: {
@@ -31,13 +32,20 @@ export const agregarCarrito = async (carrito, idventa) => {
                     venta_id: idventa,
                     videoJuego: { id: item.id },
                     cantidad: item.cantidad,
-                    precioFinal,
+                    precioFinal:precioDescuento,
                     precioIndividual: videojuego.dataRed.precio
                 })
             });
-
+            const cantidad = videojuego.dataRed.stock - item.cantidad;
+            const id = item.id;
+            console.log("id",id,"cantidad",cantidad);
+            const reducirStock = await modificarStock(id, cantidad);
+            if (reducirStock.status !== 200) {
+                throw { status: reducirStock.status, message: reducirStock.message || 'Error al reducir stock' };
+            }
+            const responseData = await response.json();
             if (!response.ok) {
-                throw { status: response.status, message: 'Error al realizar la precompra' };
+                throw { status: response.status, message: responseData.message || 'Error al realizar la precompra' };
             }
         }));
 

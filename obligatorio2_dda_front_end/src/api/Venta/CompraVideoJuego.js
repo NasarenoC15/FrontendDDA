@@ -1,5 +1,6 @@
 import Dominio from "../route";
-import {agregarCarrito} from "../PreCompraVideoJuego/agregarCarrito";
+import { agregarCarrito } from "../PreCompraVideoJuego/agregarCarrito";
+
 
 export const CompraVideoJuego = async (fecha, user, totalPremium, carritoCompra, totalRegular) => {
     if (!user || !fecha ||   !carritoCompra ) {
@@ -7,7 +8,12 @@ export const CompraVideoJuego = async (fecha, user, totalPremium, carritoCompra,
     }
 
     const fechaCompra = fecha.split('T')[0];
+    const administrador = localStorage.getItem('admin');
+    const admin = JSON.parse(administrador);
+    const vendedorid = parseInt(admin.id);
+        
         console.log("Campos requeridos");
+        console.log("vendedor",vendedorid);
         console.log(user);
         console.log(carritoCompra);
         console.log(totalPremium);
@@ -15,7 +21,7 @@ export const CompraVideoJuego = async (fecha, user, totalPremium, carritoCompra,
         console.log(fechaCompra);
     const user_id = user.id;
     try {
-        if(totalPremium === 0 && totalRegular === 0){
+        if (totalPremium === 0 && totalRegular === 0) {
             return { status: 400, message: 'No hay productos en el carrito' };
         }
         if(totalPremium ===0){
@@ -27,7 +33,8 @@ export const CompraVideoJuego = async (fecha, user, totalPremium, carritoCompra,
                 body: JSON.stringify({ 
                     fechacompra:fechaCompra,
                     persona:{id:user_id},
-                    total:totalRegular
+                    total:totalRegular,
+                    vendedor:{id:vendedorid},
                 }) 
             })
     
@@ -36,7 +43,8 @@ export const CompraVideoJuego = async (fecha, user, totalPremium, carritoCompra,
                 return { status: response.status, message: errorData.message || 'Error al comprar videojuego' };
             }
             const responseData = await response.json();
-            const response2 = await agregarCarrito(carritoCompra, responseData.id);
+            const usuario = "Regular";
+            const response2 = await agregarCarrito(carritoCompra, responseData.id,usuario);
 
             if(response2.status !== 200){
                 return { status: response2.status, message: response2.message || 'Error al comprar videojuego' };
@@ -54,6 +62,7 @@ export const CompraVideoJuego = async (fecha, user, totalPremium, carritoCompra,
                     fechacompra:fechaCompra,
                     persona:{id:user_id},
                     total:totalPremium,
+                    vendedor:{id:vendedorid},
                 })
             })
             if (!response.ok) {
@@ -61,7 +70,8 @@ export const CompraVideoJuego = async (fecha, user, totalPremium, carritoCompra,
                 return { status: response.status, message: errorData.message || 'Error al comprar videojuego' };
             }
             const responseData = await response.json();
-            const response2 = await agregarCarrito(carritoCompra, responseData.id);
+            const usuario = "Premium";
+            const response2 = await agregarCarrito(carritoCompra, responseData.id,usuario);
             if(response2.status !== 200){
                 return { status: response2.status, message: response2.message || 'Error al comprar videojuego' };
             }

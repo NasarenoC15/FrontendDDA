@@ -97,6 +97,9 @@ const ListadoDeVideoJuego = () => {
                   <span className="badge badge-outline text-black">
                     {"Stock: " + videoJuego.stock}
                   </span>
+                  <span className="badge badge-outline text-black">
+                    {"Precio: " + videoJuego.precio+" U$S"}
+                  </span>
                 </div>
                 <div className="flex justify-between mt-4">
                 <button
