@@ -94,7 +94,8 @@ const ListadoDeVideoJuego = () => {
                     placeholder="Stock mínimo"
                     value={stockMinimo}
                     onChange={(e) => setStockMinimo(e.target.value)}
-                    className="form-control w-1/4 mr-3"
+                    className=" bg-red-200 text-black mr-3"
+                    min={0}
                 />
                 <button onClick={filtrarPorStockMinimo} className="btn btn-primary">
                     Filtrar por Stock

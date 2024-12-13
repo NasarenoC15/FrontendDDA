@@ -21,7 +21,8 @@ const Dashboard = () => {
     const handleAgregarCategoria = () => router.push('../Categoria/altaCategoria');
     const handleListarCategorias = () => router.push('../Categoria/listadoDeCategorias');
 
-    const handleAgregarVenta = () => router.push('../Venta/altaVenta');
+   // const handleAgregarVenta = () => router.push('../Venta/altaVenta');
+    const handleListarVentas = () => router.push('../Ventas/listadoDeVentas');
 
 
     return (
@@ -29,7 +30,7 @@ const Dashboard = () => {
             <Header />
             <div className="container mx-auto py-6">
                 <h1 className="text-3xl font-bold text-center mb-6">Panel de control Administrador</h1>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                     {/* Zona VideoJuegos */}
                     <div className="bg-white shadow-lg text-center rounded-lg p-6">
                         <h2 className="text-xl font-semibold mb-4">Zona VideoJuegos</h2>
@@ -56,16 +57,11 @@ const Dashboard = () => {
                     {/* Zona Ventas */}
                     <div className="bg-white shadow-lg rounded-lg p-6">
                         <h2 className="text-xl text-center font-semibold mb-4">Zona Ventas</h2>
-                        <button onClick={handleAgregarVenta} className="btn btn-danger w-full mb-2">Agregar Venta</button>
-                        <p className="text-gray-600 mb-2">Realizar Venta</p>
-                        <p className="text-gray-600">*Devolver Venta*</p>
+                        {/* <button onClick={handleAgregarVenta} className="btn btn-success w-full mb-2">Agregar Venta</button> */}
+                        <button onClick={handleListarVentas} className="btn btn-success w-full">Listar Ventas</button>
+                        
                     </div>
 
-                    {/* Zona Filtros */}
-                    <div className="bg-white shadow-lg rounded-lg p-6">
-                        <h2 className="text-xl text-center font-semibold mb-4">Zona Filtros</h2>
-                        <p className="text-gray-600">Listar compras en una fecha determinada</p>
-                    </div>
                 </div>
             </div>
         </div>

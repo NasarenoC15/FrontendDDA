@@ -1,7 +1,7 @@
 'use client';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { obtenerHistorialCompra } from '../../../api/Usuarios/obtenerHistorialCompra';
+import {obtenerVentasUsuario} from '../../../api/Venta/ObtenerComprasUsuario';
 import Header from '../../../components/header';
 
 const HistorialCompra = () => {
@@ -14,7 +14,7 @@ const HistorialCompra = () => {
         if (id) {
             const fetchHistorial = async () => {
                 try {
-                    const response = await obtenerHistorialCompra(id); 
+                    const response = await obtenerVentasUsuario(id); 
                     if (response.data) {
                         setHistorial(response.data);
                     }
@@ -28,6 +28,9 @@ const HistorialCompra = () => {
         }
     }, [id]);
 
+
+    console.log(historial);
+
     if (loading) {
         return <div>Cargando historial de tu compra</div>;
     }
@@ -36,7 +39,7 @@ const HistorialCompra = () => {
         <div>
             <Header />
             <div className="container mt-5">
-                <h1>Historial de Compras del Usuario{id}</h1>
+                <h1>Historial de Compras del Usuario {historial.length>0 && historial[0].persona.nombre}</h1>
                 {historial.length > 0 ? (
                     <table className="table mt-3">
                         <thead>
@@ -49,15 +52,17 @@ const HistorialCompra = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {historial.map((compra) => (
-                                <tr key={compra.id}>
-                                    <td>{compra.id}</td>
-                                    <td>{compra.producto}</td>
-                                    <td>{compra.cantidad}</td>
-                                    <td>{compra.fecha}</td>
-                                    <td>{compra.total}</td>
-                                </tr>
-                            ))}
+                        {historial.map((venta) =>
+                                venta.carrito.map((item) => (
+                                    <tr key={`${venta.id}-${item.videoJuego.id}`}>
+                                        <td className="border px-4 py-2 text-center">{venta.id}</td>
+                                        <td className="border px-4 py-2 text-center">{item.videoJuego.nombre}</td>
+                                        <td className="border px-4 py-2 text-center">{item.cantidad}</td>
+                                        <td className="border px-4 py-2 text-center">{venta.fechacompra}</td>
+                                        <td className="border px-4 py-2 text-center">{item.precioFinal} U$S</td>
+                                    </tr>
+                                ))
+                            )}
                         </tbody>
                     </table>
                 ) : (
