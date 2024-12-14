@@ -15,6 +15,8 @@ const ListadoDeVideoJuego = () => {
     const [videoJuegos, setVideoJuegos] = useState([]);
 
     const [carrito, setCarrito] = useState([]);
+
+
     
 
     useEffect(() => {
@@ -41,6 +43,7 @@ const ListadoDeVideoJuego = () => {
     },[]);
 
     const handleActualizarCarrito = (id) => {
+        checkCarritoStock();
         return () => {
             Swal.fire({
                 title: 'Producto agregado al carrito',
@@ -59,6 +62,24 @@ const ListadoDeVideoJuego = () => {
     }
 
 
+    const checkCarritoStock = () => {
+        carrito.forEach((id) => {
+            const videoJuego = videoJuegos.find((videoJuego) => videoJuego.id === id);
+            if(videoJuego.stock === 0 || ( videoJuego.stock - carrito.filter((item) => item === id).length) < 0){
+                Swal.fire({
+                    title: 'Producto sin stock',
+                    text: `El producto ${videoJuego.nombre} no tiene stock disponible`,
+                    icon: 'error',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                carrito.splice(carrito.indexOf(id), 1);
+                localStorage.setItem('carrito', JSON.stringify(carrito));
+                return false;
+            }
+        });
+        return true;
+      }
   return (
     <div>
         <Header />

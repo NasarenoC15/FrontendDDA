@@ -13,7 +13,6 @@ const Dashboard = () => {
     const handleAgregarVideoJuego = () => router.push('../Productos/altaVideoJuego');
     const handlelistadoDeVideoJuego = () => router.push('../Productos/listadoDeVideoJuego');
     const handlelistadoDeVideoJuegoTabla = () => router.push('../Productos/listadoDeVideoJuegoTabla');
-    const handleDetalleVideoJuego = () => router.push(`../Productos/Detalle/1`);
 
     const handleAgregarUsuario = () => router.push('../Usuarios/altaUsuario');
     const handleListarUsuarios = () => router.push('../Usuarios/listadoDeUsuarios');
@@ -21,7 +20,6 @@ const Dashboard = () => {
     const handleAgregarCategoria = () => router.push('../Categoria/altaCategoria');
     const handleListarCategorias = () => router.push('../Categoria/listadoDeCategorias');
 
-   // const handleAgregarVenta = () => router.push('../Venta/altaVenta');
     const handleListarVentas = () => router.push('../Ventas/listadoDeVentas');
 
 
@@ -37,7 +35,6 @@ const Dashboard = () => {
                         <button onClick={handleAgregarVideoJuego} className="btn btn-primary w-full mb-2">Agregar Videojuego</button>
                         <button onClick={handlelistadoDeVideoJuego} className="btn btn-primary w-full mb-2">Listado de Videojuegos</button>
                         <button onClick={handlelistadoDeVideoJuegoTabla} className="btn btn-primary w-full mb-2">Listado de Videojuegos Tabla</button>
-                        <button onClick={handleDetalleVideoJuego} className="btn btn-primary w-full">Detalle del Videojuego</button>
                     </div>
 
                     {/* Zona Usuarios */}
@@ -57,7 +54,6 @@ const Dashboard = () => {
                     {/* Zona Ventas */}
                     <div className="bg-white shadow-lg rounded-lg p-6">
                         <h2 className="text-xl text-center font-semibold mb-4">Zona Ventas</h2>
-                        {/* <button onClick={handleAgregarVenta} className="btn btn-success w-full mb-2">Agregar Venta</button> */}
                         <button onClick={handleListarVentas} className="btn btn-success w-full">Listar Ventas</button>
                         
                     </div>
